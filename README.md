@@ -13,7 +13,8 @@
   - [x] BPM markers
 - [x] Waveform on timeline
 - [x] .txt map save/load support
-- [x] Optimizations for low-end devices
+- [ ] Investigate performance issues on Windows
+- [ ] Optimizations for low-end devices
 - [ ] Vulnus .zip support
 
 ## FAQ:
@@ -28,7 +29,9 @@ Almost any platform that supports OpenGL and Python. Windows, MacOS, and most Li
 
 > What do I do if it crashes?
 
-Report it! My discord tag is in the crash message, but if you can't reach me from there, feel free to open an issue.
+Report it! My discord tag is in the crash message, but if you can't reach me from there, feel free to open an issue.\
+When the program crashes, an error message is written to `crashlog.txt` in the directory you ran the program from.\
+Include this in your crash report, it helps me diagnose the issue.
 
 > How do I run it?
 
@@ -40,6 +43,9 @@ pip install wheel
 pip install -r requirements.txt
 python main.py
 ```
+
+Make sure your python is up to date. I develop on Python v3.10.
+
 ## Troubleshooting
 
 > It's crashing and complaining about a file not found when loading a map!
@@ -56,15 +62,12 @@ This usually happens when the level is interrupted during saving. It's good prac
 
 ## Notes
 
+This is still beta software! Don't be surprised if it crashes. Report the crash to me and I'll handle it.\
 The code behind the file picker was taken from https://github.com/Zygahedron/Parabox-Editor, with [explicit permission from the repository owner.][1]
 
 
 [1]: https://i.imgur.com/7JyRsjb.png (Permission proof)
 
 ## Gallery
-[![YT link to SSPy Demo](https://img.youtube.com/vi/30xzC9m12Xg/0.jpg)](https://www.youtube.com/watch?v=30xzC9m12Xg)
-![Screenshot_2022-10-12_19-52-11](https://user-images.githubusercontent.com/59123926/195474222-8ba3a165-2e4d-4bd2-820a-be3030b87f91.png)
-![Screenshot_2022-10-12_19-50-23](https://user-images.githubusercontent.com/59123926/195474223-afc23cc3-d870-45e6-902e-eda1d004826e.png)
-![Screenshot_2022-10-12_19-50-13](https://user-images.githubusercontent.com/59123926/195474224-f43697fe-108e-4e56-bf78-96bbc33d405b.png)
-![Screenshot_2022-10-12_19-49-52](https://user-images.githubusercontent.com/59123926/195474225-78400263-58f2-42e2-8b3e-45f2254a56e0.png)
-![Screenshot_2022-10-12_19-49-47](https://user-images.githubusercontent.com/59123926/195474226-8ac4c514-8c5f-44b9-9f20-72d3b43446e2.png)
+[![YT link to SSPy Demo](https://img.youtube.com/vi/30xzC9m12Xg/0.jpg)](https://www.youtube.com/watch?v=30xzC9m12Xg)\
+[YouTube link]
