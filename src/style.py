@@ -1,4 +1,5 @@
 import imgui
+from pathlib import Path
 
 
 def set(style: imgui.core.GuiStyle):
@@ -35,5 +36,5 @@ def set(style: imgui.core.GuiStyle):
     style.window_border_size = 0
     style.window_min_size = (150, 176)
     return io.fonts.add_font_default(), io.fonts.add_font_from_file_ttf(
-        "assets/DroidSans.ttf", 20
+        str(Path(__file__).parent.parent.joinpath("assets", "DroidSans.ttf")), 20
     )

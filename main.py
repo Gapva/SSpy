@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import ctypes
 import sys
 import traceback
@@ -7,6 +8,10 @@ import sdl2.sdlimage
 from imgui.integrations.sdl2 import SDL2Renderer
 import OpenGL.GL as gl
 import src.loop as loop
+from pathlib import Path
+import os
+from tkinter import Tk  # this is only for the file dialog
+
 
 import src.style as imgui_style
 
@@ -19,6 +24,8 @@ def main():
     impl = SDL2Renderer(window)
     impl.refresh_font_texture()
     editor = loop.Editor()
+    root = Tk()
+    root.withdraw()
     try:
         editor.start(window, impl, font, default_font, gl_ctx)
     except Exception as e:  # Don't catch KeyboardInterrupt
@@ -26,12 +33,13 @@ def main():
         print("-------------------")
         print("If you're seeing this, the app encountered a fatal error and had to close.")
         print("Please send crashlog.txt to @balt#6423 on Discord, and tell him what you were doing that caused the crash.")
-        print("-------------------", end="")
-        with open("crashlog.txt", "w+") as f:
+        print("-------------------")
+        with open(f"{Path(__file__).resolve().parent}{os.sep}crashlog.txt", "w+") as f:
             f.write(traceback.format_exc())
-        raise
+        traceback.print_exc()
+        if sys.gettrace() is not None:  # only reraise if not being debugged
+            raise
     finally:
-        print()
         impl.shutdown()
         sdl2.SDL_GL_DeleteContext(gl_ctx)
         sdl2.SDL_DestroyWindow(window)
@@ -40,7 +48,7 @@ def main():
 
 def init():
     width, height = 1366, 768
-    window_name = "If you see this as a window name, something's wrong."
+    window_name = "SSPy"
     if sdl2.SDL_Init(sdl2.SDL_INIT_EVERYTHING) < 0:
         print("Error: SDL could not initialize! SDL Error: " + sdl2.SDL_GetError().decode("utf-8"))
         exit(1)
@@ -78,7 +86,7 @@ def init():
         print("Warning: Unable to set VSync! SDL Error: " + sdl2.SDL_GetError().decode("utf-8"))
         exit(1)
 
-    image = sdl2.sdlimage.IMG_Load(b"assets/icon.png")
+    image = sdl2.sdlimage.IMG_Load(f"{Path(__file__).resolve().parent}{os.sep}assets{os.sep}icon.png".encode("utf-8"))
     sdl2.SDL_SetWindowIcon(window, image)
     sdl2.SDL_FreeSurface(image)
 
